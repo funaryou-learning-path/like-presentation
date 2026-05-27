@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>オールシェア(仮) — 資料プレビュー</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- marked: Markdown → HTML -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js" defer></script>
+  <!-- highlight.js: コードシンタックスハイライト -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/styles/github.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.11.1/highlight.min.js" defer></script>
+  <!-- mermaid: ダイアグラム描画 -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- ヘッダー -->
+  <header class="app-header">
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="メニューを開く">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><path d="M3 5h14v2H3zm0 4h14v2H3zm0 4h14v2H3z"/></svg>
+    </button>
+    <h1 class="app-title">
+      <a href="#/">オールシェア(仮)</a>
+    </h1>
+    <span class="app-subtitle">資料プレビュー</span>
+  </header>
+
+  <div class="layout">
+    <!-- サイドバー: ファイルツリー -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-header">📁 materials</div>
+      <ul class="tree" id="fileTree"></ul>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="content" id="content">
+      <div class="welcome" id="welcome">
+        <h2>ようこそ</h2>
+        <p>左のサイドバーから資料を選択してください。</p>
+        <hr>
+        <h3>📂 materials/ 構成</h3>
+        <ul>
+          <li><code>architecture/system/</code> — 技術選定・機能一覧・プロジェクトコンセプト</li>
+          <li><code>design/</code> — 画面要件定義</li>
+          <li><code>guide/</code> — 環境構築手順</li>
+          <li><code>temp/</code> — 一時メモ・AIブラッシュアップ</li>
+        </ul>
+      </div>
+      <div class="error" id="error" hidden>
+        <h2>⚠ ファイルを読み込めませんでした</h2>
+        <p id="errorMessage"></p>
+      </div>
+      <article class="document" id="document" hidden>
+        <nav class="breadcrumb" id="breadcrumb"></nav>
+        <div class="markdown-body" id="markdownBody"></div>
+      </article>
+    </main>
+  </div>
+
+  <!-- サイドバーオーバーレイ（モバイル用） -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+</body>
+</html>
