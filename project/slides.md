@@ -1,5 +1,5 @@
 ---
-marp: false
+marp: true
 theme: uncover
 class:
   - lead
@@ -13,7 +13,7 @@ Ctrl+Shift+P → "Marp: Preview" でスライド表示
 
 # **VANTAN付近 最強自販機ドリンク 4選**
 
-～ 高校に潜む、知られざるドリンクの楽園 ～
+～ 学校に潜む、知られざるドリンクの楽園 ～
 
 ---
 
