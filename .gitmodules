@@ -1,0 +1,3 @@
+[submodule "project/part2"]
+	path = project/part2
+	url = git@github.com:funaryou/Auto-Presentation.git
