@@ -1,0 +1,31 @@
+services:
+  app:
+    build:
+      context: ./project/Auto-Presentation
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      # like-presentation側で管理するコンテンツをマウント
+      # sample はコンテナ内のまま、part2以降のみホストから注入する
+      - ./project/presentations/part2:/app/src/presentations/part2:ro
+      # part3以降を追加する場合は同様に1行追加
+      # - ./project/presentations/part3:/app/src/presentations/part3:ro
+
+      # presentations.ts のHMRとpublic配信のために src/presentations 全体を監視対象にする場合は、
+      # 上記の個別マウントではなく全体マウントも可能。ただし sample が隠れるため個別マウントを推奨
+
+      # node_modules は匿名ボリュームで分離（ホストとコンテナの差異を吸収）
+      - /app/node_modules
+    environment:
+      - VITE_VOICEVOX_URL=http://voicevox:50021
+    depends_on:
+      - voicevox
+    # 開発用: vite dev server
+    # 本番ビルドする場合は command を上書き: docker compose run app npm run build
+
+  voicevox:
+    image: voicevox/voicevox_engine:cpu-ubuntu20.04-latest
+    ports:
+      - "50021:50021"
+    restart: unless-stopped
